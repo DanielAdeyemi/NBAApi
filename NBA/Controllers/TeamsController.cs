@@ -17,7 +17,7 @@ namespace NBA.Controllers
       _db = db;
     }
 
-    // GET api/teams
+    // GET api/Teams
     [HttpGet]
     public ActionResult<IEnumerable<Team>> Get(string location, string teamName, int nbaTeamsChampionships)
     {
@@ -38,6 +38,20 @@ namespace NBA.Controllers
       }
 
       return query.ToList();
+    }
+
+    // GET: api/Teams/5
+    [HttpGet("{id}")]
+    public async Task<ActionResult<Team>> GetTeam(int id)
+    {
+        var team = await _db.Teams.FindAsync(id);
+
+        if (team == null)
+        {
+            return NotFound();
+        }
+
+        return team;
     }
   }
 }

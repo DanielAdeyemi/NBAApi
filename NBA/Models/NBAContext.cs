@@ -4,8 +4,6 @@ namespace NBA.Models
 {
   public class NBAContext : DbContext
   {
-    public virtual DbSet<Team> Teams { get; set; }
-    public DbSet<Player> Players { get; set; }
 
     public NBAContext(DbContextOptions<NBAContext> options) : base(options) { }
 
@@ -46,5 +44,8 @@ namespace NBA.Models
           new Team { TeamId = 31, TeamName = "Free Agents", Location = "NBA", NbaTeamsChampionships = 7 }
         );
     }
+
+    public virtual DbSet<Team> Teams { get; set; }
+    public DbSet<Player> Players { get; set; }
   }
 }
