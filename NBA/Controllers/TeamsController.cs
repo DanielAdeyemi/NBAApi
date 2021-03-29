@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NBA.Models;
 using System.Linq;
+using System;
 
 namespace NBA.Controllers
 {
@@ -19,9 +20,10 @@ namespace NBA.Controllers
 
     // GET api/Teams
     [HttpGet]
-    public ActionResult<IEnumerable<Team>> Get(string location, string teamName, int nbaTeamsChampionships)
+    public async Task<ActionResult<IEnumerable<Team>>> Get(string location, string teamName, string nbaTeamsChampionships)
     {
       var query = _db.Teams.AsQueryable();
+
       if(location != null)
       {
         query = query.Where(team => team.Location == location);
@@ -32,12 +34,12 @@ namespace NBA.Controllers
         query = query.Where(team => team.TeamName == teamName);
       }
 
-      if(nbaTeamsChampionships.ToString() != null)
+      if(Int32.TryParse(nbaTeamsChampionships, out int numberOfC))
       {
-        query = query.Where(team => team.NbaTeamsChampionships == nbaTeamsChampionships);
+        query = query.Where(team => team.NbaTeamsChampionships == numberOfC);
       }
 
-      return query.ToList();
+      return await query.ToListAsync();
     }
 
     // GET: api/Teams/5
