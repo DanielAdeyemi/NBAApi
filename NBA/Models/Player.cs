@@ -15,6 +15,10 @@ namespace NBA.Models
     public string Position { get; set; }
 
     [Required]
+    [Range(0, 100, ErrorMessage = "Jersey Number should be between 0 and 100.")]
+    public int JerseyNumber { get; set; }
+
+    [Required]
     [Range(0, 60, ErrorMessage = "Number of Nba Championships should be between 0 and 60.")]
     public int NbaPlayersChampionships { get; set; }
 
