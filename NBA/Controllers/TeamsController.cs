@@ -16,5 +16,28 @@ namespace NBA.Controllers
     {
       _db = db;
     }
+
+    // GET api/teams
+    [HttpGet]
+    public ActionResult<IEnumerable<Team>> Get(string location, string teamName, int nbaTeamsChampionships)
+    {
+      var query = _db.Teams.AsQueryable();
+      if(location != null)
+      {
+        query = query.Where(team => team.Location == location);
+      }
+
+      if(teamName != null)
+      {
+        query = query.Where(team => team.TeamName == teamName);
+      }
+
+      if(nbaTeamsChampionships.ToString() != null)
+      {
+        query = query.Where(team => team.NbaTeamsChampionships == nbaTeamsChampionships);
+      }
+
+      return query.ToList();
+    }
   }
 }
