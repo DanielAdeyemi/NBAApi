@@ -55,5 +55,37 @@ namespace NBA.Controllers
 
         return team;
     }
+
+    // PUT: api/teams/5
+    [HttpPut("{id}")]
+    public async Task<ActionResult<Team>> Put(int id, Team team)
+    {
+      if(id != team.TeamId)
+      {
+        return BadRequest();
+      }
+      _db.Entry(team).State = EntityState.Modified;
+      try
+      {
+          await _db.SaveChangesAsync();
+      }
+      catch (DbUpdateConcurrencyException)
+      {
+          if(!TeamExists(id))
+          {
+            return NotFound();
+          }
+          else
+          {
+            throw;
+          }
+      }
+      return NoContent();
+    }
+    
+    private bool TeamExists(int id)
+    {
+      return _db.Teams.Any(e => e.TeamId == id);
+    }
   }
 }
