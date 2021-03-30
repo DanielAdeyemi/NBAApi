@@ -26,6 +26,9 @@ namespace NBA.Migrations
                     b.Property<int>("AllStars")
                         .HasColumnType("int");
 
+                    b.Property<int>("JerseyNumber")
+                        .HasColumnType("int");
+
                     b.Property<int>("NbaPlayersChampionships")
                         .HasColumnType("int");
 
@@ -49,6 +52,38 @@ namespace NBA.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("Players");
+
+                    b.HasData(
+                        new
+                        {
+                            PlayerId = 1,
+                            AllStars = 14,
+                            JerseyNumber = 23,
+                            NbaPlayersChampionships = 5,
+                            PlayOffs = 16,
+                            PlayerName = "LeBron James",
+                            Position = "Forward"
+                        },
+                        new
+                        {
+                            PlayerId = 2,
+                            AllStars = 11,
+                            JerseyNumber = 7,
+                            NbaPlayersChampionships = 2,
+                            PlayOffs = 10,
+                            PlayerName = "Kevin Durant",
+                            Position = "Small Forward"
+                        },
+                        new
+                        {
+                            PlayerId = 3,
+                            AllStars = 7,
+                            JerseyNumber = 32,
+                            NbaPlayersChampionships = 3,
+                            PlayOffs = 11,
+                            PlayerName = "Stephen Cuury",
+                            Position = "Point Guard"
+                        });
                 });
 
             modelBuilder.Entity("NBA.Models.Team", b =>
@@ -295,9 +330,11 @@ namespace NBA.Migrations
 
             modelBuilder.Entity("NBA.Models.Player", b =>
                 {
-                    b.HasOne("NBA.Models.Team", null)
+                    b.HasOne("NBA.Models.Team", "Team")
                         .WithMany("Players")
                         .HasForeignKey("TeamId");
+
+                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("NBA.Models.Team", b =>

@@ -30,6 +30,7 @@ namespace NBA.Migrations
                         .Annotation("MySql:ValueGenerationStrategy", MySqlValueGenerationStrategy.IdentityColumn),
                     PlayerName = table.Column<string>(type: "varchar(60) CHARACTER SET utf8mb4", maxLength: 60, nullable: false),
                     Position = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: false),
+                    JerseyNumber = table.Column<int>(type: "int", nullable: false),
                     NbaPlayersChampionships = table.Column<int>(type: "int", nullable: false),
                     PlayOffs = table.Column<int>(type: "int", nullable: false),
                     AllStars = table.Column<int>(type: "int", nullable: false),
@@ -47,27 +48,36 @@ namespace NBA.Migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Players",
+                columns: new[] { "PlayerId", "AllStars", "JerseyNumber", "NbaPlayersChampionships", "PlayOffs", "PlayerName", "Position", "TeamId" },
+                values: new object[,]
+                {
+                    { 1, 14, 23, 5, 16, "LeBron James", "Forward", null },
+                    { 2, 11, 7, 2, 10, "Kevin Durant", "Small Forward", null },
+                    { 3, 7, 32, 3, 11, "Stephen Cuury", "Point Guard", null }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Teams",
                 columns: new[] { "TeamId", "Location", "NbaTeamsChampionships", "TeamName" },
                 values: new object[,]
                 {
-                    { 1, "Atlanta", 7, "Hawks" },
-                    { 29, "Utah", 7, "Jazz" },
-                    { 28, "Toronto", 7, "Raptors" },
-                    { 27, "Sacramento", 7, "Kings" },
-                    { 26, "Portland", 7, "Trail Blazers" },
-                    { 25, "Phoenix", 7, "Suns" },
-                    { 24, "Philadelphia", 7, "76ers" },
-                    { 23, "Orlando", 7, "Magic" },
-                    { 22, "San Antonio", 7, "Spurs" },
-                    { 21, "Oklakhoma", 7, "Thunder" },
-                    { 20, "New York", 7, "Knicks" },
-                    { 19, "Charlotte", 7, "Hornets" },
                     { 18, "Minnesota", 7, "Timberwolves" },
+                    { 19, "Charlotte", 7, "Hornets" },
+                    { 20, "New York", 7, "Knicks" },
+                    { 21, "Oklakhoma", 7, "Thunder" },
+                    { 22, "San Antonio", 7, "Spurs" },
+                    { 23, "Orlando", 7, "Magic" },
+                    { 24, "Philadelphia", 7, "76ers" },
+                    { 25, "Phoenix", 7, "Suns" },
+                    { 26, "Portland", 7, "Trail Blazers" },
+                    { 27, "Sacramento", 7, "Kings" },
+                    { 28, "Toronto", 7, "Raptors" },
+                    { 29, "Utah", 7, "Jazz" },
                     { 17, "Milwaukee", 7, "Bucks" },
-                    { 30, "Washington", 7, "Wizards" },
                     { 16, "Miami", 7, "Heat" },
                     { 14, "Los Angeles", 7, "Lakers" },
+                    { 30, "Washington", 7, "Wizards" },
                     { 13, "Los Angeles", 7, "Clippers" },
                     { 12, "Indiana", 7, "Pacers" },
                     { 11, "Houston", 7, "Rockets" },
@@ -80,6 +90,7 @@ namespace NBA.Migrations
                     { 4, "Hornets", 7, "Hornets" },
                     { 3, "Brooklyn", 7, "Nets" },
                     { 2, "Boston", 7, "Celtics" },
+                    { 1, "Atlanta", 7, "Hawks" },
                     { 15, "Memphis", 7, "Grizzlies" },
                     { 31, "NBA", 7, "Free Agents" }
                 });
