@@ -30,6 +30,7 @@ namespace NBA.Models
     [Range(0, 60, ErrorMessage = "Number of Nba Allstar appearences should be between 0 and 60.")]
     public int AllStars { get; set; }
     
+    public int TeamId { get; set; }
     public virtual Team Team { get; set; }
   }
 }

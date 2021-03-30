@@ -1,4 +1,7 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace NBA.Models
 {
@@ -43,12 +46,12 @@ namespace NBA.Models
           new Team { TeamId = 30, TeamName = "Wizards", Location = "Washington", NbaTeamsChampionships = 7 },
           new Team { TeamId = 31, TeamName = "Free Agents", Location = "NBA", NbaTeamsChampionships = 7 }
         );
-      builder.Entity<Player>()
-        .HasData(
-          new Player { PlayerId = 1, PlayerName = "LeBron James",Position = "Forward" ,JerseyNumber = 23, NbaPlayersChampionships = 5, PlayOffs = 16, AllStars = 14},
-          new Player { PlayerId = 2, PlayerName = "Kevin Durant", Position = "Small Forward", JerseyNumber = 7, NbaPlayersChampionships = 2, PlayOffs = 10, AllStars = 11},
-          new Player { PlayerId = 3, PlayerName = "Stephen Cuury",Position = "Point Guard", JerseyNumber = 32, NbaPlayersChampionships = 3, PlayOffs = 11, AllStars = 7}
-        );
+      // builder.Entity<Player>()
+      //   .HasData(
+      //     new Player { PlayerId = 1, PlayerName = "LeBron James",Position = "Forward", JerseyNumber = 23, NbaPlayersChampionships = 5, PlayOffs = 16, AllStars = 14, Team = Teams.FirstOrDefault(e => e.TeamId == 14)},
+      //     new Player { PlayerId = 2, PlayerName = "Kevin Durant", Position = "Small Forward", JerseyNumber = 7, NbaPlayersChampionships = 2, PlayOffs = 10, AllStars = 11, Team = Teams.FirstOrDefault(e => e.TeamId == 3)},
+      //     new Player { PlayerId = 3, PlayerName = "Stephen Cuury",Position = "Point Guard", JerseyNumber = 32, NbaPlayersChampionships = 3, PlayOffs = 11, AllStars = 7, Team = Teams.FirstOrDefault(e => e.TeamId == 10)}
+      //   );
     }
 
     public virtual DbSet<Team> Teams { get; set; }
