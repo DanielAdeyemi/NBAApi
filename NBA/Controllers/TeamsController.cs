@@ -82,6 +82,29 @@ namespace NBA.Controllers
       }
       return NoContent();
     }
+    // POST: /api/team
+    [HttpPost]
+    public async Task<ActionResult<Team>> Post(Team team)
+    {
+      _db.Teams.Add(team);
+      await _db.SaveChangesAsync();
+      return CreatedAtAction("Post", new { id = team.TeamId}, team);
+    }
+    
+    //  DELETE: /api/teams/delete/id
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> DeleteTeam(int id)
+    {
+      var team = await _db.Teams.FindAsync(id);
+      if(team == null)
+      {
+        return NotFound();
+      }
+      
+      _db.Teams.Remove(team);
+      await _db.SaveChangesAsync();
+      return NoContent();
+    }
     
     private bool TeamExists(int id)
     {
