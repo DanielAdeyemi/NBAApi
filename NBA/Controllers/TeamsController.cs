@@ -82,7 +82,7 @@ namespace NBA.Controllers
       }
       return NoContent();
     }
-    // POST: /api/team
+    // POST: /api/teams
     [HttpPost]
     public async Task<ActionResult<Team>> Post(Team team)
     {
