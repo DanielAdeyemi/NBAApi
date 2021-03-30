@@ -16,5 +16,14 @@ namespace NBA.Controllers
     {
       _db = db;
     }
+
+    // GET api/players
+    [HttpGet]
+    public async Task<ActionResult<IEnumerable<Player>>> Get()
+    {
+      var query = _db.Players.AsQueryable();
+
+      return await query.ToListAsync();
+    }
   }
 }
