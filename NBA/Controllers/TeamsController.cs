@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using NBA.Models;
 using System.Linq;
 using System;
+using System.IO;
 
 namespace NBA.Controllers
 {
@@ -22,7 +23,7 @@ namespace NBA.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Team>>> Get(string location, string teamName, string nbaTeamsChampionships)
     {
-      var query = _db.Teams.AsQueryable();
+      var query = _db.Teams.Include(entry => entry.Players).AsQueryable();
 
       if(location != null)
       {

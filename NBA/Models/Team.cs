@@ -20,6 +20,8 @@ namespace NBA.Models
     public string Location { get; set; }
     [Range(0, 255, ErrorMessage = "Number of Nba Championships should be between 0 and 255.")]
     public int NbaTeamsChampionships { get; set; }
+
+    // [ForeignKey("TeamId")]
     public virtual ICollection<Player> Players { get; set; }
 
     }

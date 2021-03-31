@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.EntityFrameworkCore;
 
 namespace NBA.Models
 {
@@ -29,8 +30,8 @@ namespace NBA.Models
     [Required]
     [Range(0, 60, ErrorMessage = "Number of Nba Allstar appearences should be between 0 and 60.")]
     public int AllStars { get; set; }
-    
+
+    // [ForeignKey ("Team")]
     public int TeamId { get; set; }
-    public virtual Team Team { get; set; }
   }
 }

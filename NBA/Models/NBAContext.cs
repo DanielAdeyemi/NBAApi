@@ -12,6 +12,7 @@ namespace NBA.Models
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+
       builder.Entity<Team>()
         .HasData(
           new Team { TeamId = 1, TeamName = "Hawks", Location = "Atlanta", NbaTeamsChampionships = 7},
@@ -46,12 +47,12 @@ namespace NBA.Models
           new Team { TeamId = 30, TeamName = "Wizards", Location = "Washington", NbaTeamsChampionships = 7 },
           new Team { TeamId = 31, TeamName = "Free Agents", Location = "NBA", NbaTeamsChampionships = 7 }
         );
-      builder.Entity<Player>()
-        .HasData(
-          new Player { PlayerId = 1, PlayerName = "LeBron James",Position = "Forward", JerseyNumber = 23, NbaPlayersChampionships = 5, PlayOffs = 16, AllStars = 14, TeamId = 14},
-          new Player { PlayerId = 2, PlayerName = "Kevin Durant", Position = "Small Forward", JerseyNumber = 7, NbaPlayersChampionships = 2, PlayOffs = 10, AllStars = 11, TeamId = 3},
-          new Player { PlayerId = 3, PlayerName = "Stephen Cuury",Position = "Point Guard", JerseyNumber = 32, NbaPlayersChampionships = 3, PlayOffs = 11, AllStars = 7, TeamId = 10}
-        );
+      // builder.Entity<Player>()
+      //   .HasData(
+      //     new Player { PlayerId = 1, PlayerName = "LeBron James",Position = "Forward", JerseyNumber = 23, NbaPlayersChampionships = 5, PlayOffs = 16, AllStars = 14, TeamId = 14},
+      //     new Player { PlayerId = 2, PlayerName = "Kevin Durant", Position = "Small Forward", JerseyNumber = 7, NbaPlayersChampionships = 2, PlayOffs = 10, AllStars = 11, TeamId = 3},
+      //     new Player { PlayerId = 3, PlayerName = "Stephen Cuury",Position = "Point Guard", JerseyNumber = 32, NbaPlayersChampionships = 3, PlayOffs = 11, AllStars = 7, TeamId = 10}
+      //   );
     }
 
     public virtual DbSet<Team> Teams { get; set; }

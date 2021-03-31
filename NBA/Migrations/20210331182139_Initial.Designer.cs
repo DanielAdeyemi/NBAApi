@@ -8,7 +8,7 @@ using NBA.Models;
 namespace NBA.Migrations
 {
     [DbContext(typeof(NBAContext))]
-    [Migration("20210330180215_Initial")]
+    [Migration("20210331182139_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -53,41 +53,6 @@ namespace NBA.Migrations
                     b.HasIndex("TeamId");
 
                     b.ToTable("Players");
-
-                    b.HasData(
-                        new
-                        {
-                            PlayerId = 1,
-                            AllStars = 14,
-                            JerseyNumber = 23,
-                            NbaPlayersChampionships = 5,
-                            PlayOffs = 16,
-                            PlayerName = "LeBron James",
-                            Position = "Forward",
-                            TeamId = 14
-                        },
-                        new
-                        {
-                            PlayerId = 2,
-                            AllStars = 11,
-                            JerseyNumber = 7,
-                            NbaPlayersChampionships = 2,
-                            PlayOffs = 10,
-                            PlayerName = "Kevin Durant",
-                            Position = "Small Forward",
-                            TeamId = 3
-                        },
-                        new
-                        {
-                            PlayerId = 3,
-                            AllStars = 7,
-                            JerseyNumber = 32,
-                            NbaPlayersChampionships = 3,
-                            PlayOffs = 11,
-                            PlayerName = "Stephen Cuury",
-                            Position = "Point Guard",
-                            TeamId = 10
-                        });
                 });
 
             modelBuilder.Entity("NBA.Models.Team", b =>
@@ -334,13 +299,11 @@ namespace NBA.Migrations
 
             modelBuilder.Entity("NBA.Models.Player", b =>
                 {
-                    b.HasOne("NBA.Models.Team", "Team")
+                    b.HasOne("NBA.Models.Team", null)
                         .WithMany("Players")
                         .HasForeignKey("TeamId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Team");
                 });
 
             modelBuilder.Entity("NBA.Models.Team", b =>

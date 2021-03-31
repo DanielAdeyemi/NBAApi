@@ -85,21 +85,6 @@ namespace NBA.Migrations
                     { 31, "NBA", 7, "Free Agents" }
                 });
 
-            migrationBuilder.InsertData(
-                table: "Players",
-                columns: new[] { "PlayerId", "AllStars", "JerseyNumber", "NbaPlayersChampionships", "PlayOffs", "PlayerName", "Position", "TeamId" },
-                values: new object[] { 2, 11, 7, 2, 10, "Kevin Durant", "Small Forward", 3 });
-
-            migrationBuilder.InsertData(
-                table: "Players",
-                columns: new[] { "PlayerId", "AllStars", "JerseyNumber", "NbaPlayersChampionships", "PlayOffs", "PlayerName", "Position", "TeamId" },
-                values: new object[] { 3, 7, 32, 3, 11, "Stephen Cuury", "Point Guard", 10 });
-
-            migrationBuilder.InsertData(
-                table: "Players",
-                columns: new[] { "PlayerId", "AllStars", "JerseyNumber", "NbaPlayersChampionships", "PlayOffs", "PlayerName", "Position", "TeamId" },
-                values: new object[] { 1, 14, 23, 5, 16, "LeBron James", "Forward", 14 });
-
             migrationBuilder.CreateIndex(
                 name: "IX_Players_TeamId",
                 table: "Players",
