@@ -37,27 +37,25 @@ namespace NBA.Controllers
       return await query.ToListAsync();
     }
 
-    // POST: /api/players/?teamid=teamId
+    // POST: /api/players/?teamId=14
     [HttpPost]
     public async Task<ActionResult<Player>> Post(Player player, int teamId)
     {
-      var thisTeam = _db.Teams.Include(entry => entry.Players).FirstOrDefault(entry => entry.TeamId == teamId);
+      var thisTeam = _db.Teams
+        .Include(entry => entry.Players)
+        .FirstOrDefault(entry => entry.TeamId == teamId);
 
       if(thisTeam != null)
       {
         player.TeamId = thisTeam.TeamId;
+        player.Team = thisTeam.TeamName;
         _db.Players.Add(player);
-        _db.Teams.Update(thisTeam);
         await _db.SaveChangesAsync();
       }
       else
       {
         return BadRequest();
       }
-
-      Console.WriteLine("Player: " + player.PlayerName);
-      Console.WriteLine("");
-      Console.WriteLine("thisTeam: " + thisTeam.TeamName);
 
       return CreatedAtAction("Post", new { id = player.PlayerId}, player);
     }
@@ -89,11 +87,15 @@ namespace NBA.Controllers
       return NoContent();
     }
     
-    //  DELETE: /api/teams/delete/id
+    //  DELETE: /api/players/delete/id
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePlayer(int id)
     {
       var player = await _db.Players.FindAsync(id);
+      // var thisPlayer =  await _db.Players.FindAsync(player.PlayerId);
+      Console.WriteLine("TEST TEST");
+      Console.WriteLine("Player: " + player.PlayerName);
+
       if(player == null)
       {
         return NotFound();

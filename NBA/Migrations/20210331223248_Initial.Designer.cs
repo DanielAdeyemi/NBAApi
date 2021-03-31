@@ -8,7 +8,7 @@ using NBA.Models;
 namespace NBA.Migrations
 {
     [DbContext(typeof(NBAContext))]
-    [Migration("20210331182139_Initial")]
+    [Migration("20210331223248_Initial")]
     partial class Initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -43,6 +43,9 @@ namespace NBA.Migrations
 
                     b.Property<string>("Position")
                         .IsRequired()
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
+                    b.Property<string>("Team")
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
                     b.Property<int>("TeamId")

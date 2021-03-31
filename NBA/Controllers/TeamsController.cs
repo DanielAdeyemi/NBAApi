@@ -23,7 +23,9 @@ namespace NBA.Controllers
     [HttpGet]
     public async Task<ActionResult<IEnumerable<Team>>> Get(string location, string teamName, string nbaTeamsChampionships)
     {
-      var query = _db.Teams.Include(entry => entry.Players).AsQueryable();
+      var query = _db.Teams
+        .Include(entry => entry.Players)
+        .AsQueryable();
 
       if(location != null)
       {
@@ -47,14 +49,16 @@ namespace NBA.Controllers
     [HttpGet("{id}")]
     public async Task<ActionResult<Team>> GetTeam(int id)
     {
-        var team = await _db.Teams.FindAsync(id);
+        var team = await _db.Teams
+          .Include(entry => entry.Players)
+          .FirstOrDefaultAsync(team => team.TeamId == id);
+        var thisTeam = await _db.Teams.FindAsync(team.TeamId);
 
-        if (team == null)
+        if (thisTeam == null)
         {
             return NotFound();
         }
-
-        return team;
+        return thisTeam;
     }
 
     // PUT: api/teams/5

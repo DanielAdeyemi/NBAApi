@@ -43,6 +43,9 @@ namespace NBA.Migrations
                         .IsRequired()
                         .HasColumnType("longtext CHARACTER SET utf8mb4");
 
+                    b.Property<string>("Team")
+                        .HasColumnType("longtext CHARACTER SET utf8mb4");
+
                     b.Property<int>("TeamId")
                         .HasColumnType("int");
 

@@ -34,7 +34,8 @@ namespace NBA.Migrations
                     NbaPlayersChampionships = table.Column<int>(type: "int", nullable: false),
                     PlayOffs = table.Column<int>(type: "int", nullable: false),
                     AllStars = table.Column<int>(type: "int", nullable: false),
-                    TeamId = table.Column<int>(type: "int", nullable: false)
+                    TeamId = table.Column<int>(type: "int", nullable: false),
+                    Team = table.Column<string>(type: "longtext CHARACTER SET utf8mb4", nullable: true)
                 },
                 constraints: table =>
                 {

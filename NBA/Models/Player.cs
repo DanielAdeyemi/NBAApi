@@ -33,5 +33,6 @@ namespace NBA.Models
 
     // [ForeignKey ("Team")]
     public int TeamId { get; set; }
+    public string Team { get; set; }
   }
 }
