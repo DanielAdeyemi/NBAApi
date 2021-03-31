@@ -87,7 +87,7 @@ namespace NBA.Controllers
       return NoContent();
     }
     
-    //  DELETE: /api/players/delete/id
+    //  DELETE: /api/players/id
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeletePlayer(int id)
     {

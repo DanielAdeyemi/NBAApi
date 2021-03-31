@@ -101,6 +101,13 @@ namespace NBA.Controllers
     public async Task<IActionResult> DeleteTeam(int id)
     {
       var team = await _db.Teams.FindAsync(id);
+      var faTeam = await _db.Teams.FirstOrDefaultAsync(team => team.TeamName == "Free Agents");
+
+      foreach(Player player in _db.Teams.Players)
+      {
+        faTeam.Players.Add(Player);
+      }
+
       if(team == null)
       {
         return NotFound();
