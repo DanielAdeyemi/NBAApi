@@ -75,29 +75,68 @@ https://localhost:5000/api/teams/?location=toronto&NbaTeamsChampionships=1
 #### Sample JSON Response
 ```
 {
+  "TeamId": 28,
+  "TeamName": "Raptors",
+  "Location": "Toronto",
+  "NbaTeamsChampionships: 1,
+  "Players": [
+  {
+    "PlayerId": 5,
+    "PlayerName": "Kyle Lowry",
+    "Position": "Point Guard",
+    "JerseyNumber": 7,
+    "NbaPlayersChampionships": 1,
+    "PlayOffs": 10,
+    "AllStars": 5,
     "TeamId": 28,
-    "TeamName": "Raptors",
-    "Location": "Toronto",
-    "NbaTeamsChampionships: 1,
-    "Players": [
-        {
-            "PlayerId": 5,
-            "PlayerName": "Kyle Lowry",
-            "Position": "Point Guard",
-            "JerseyNumber": 7,
-            "NbaPlayersChampionships": 1,
-            "PlayOffs": 10,
-            "AllStars": 5,
-            "TeamId": 28,
-            "Team": "Raptors"
-        }
-    ]
+    "Team": "Raptors "
+  }
+  ]
 
 }
 ```
 </details>
 <details>
 <summary>Players</summary>
+```
+GET /api/players
+POST /api/players
+GET /api/players/{id}
+PUT /api/players/{id}
+DELETE /api/players/{id}
+```
+
+#### Path Parameters
+| Parameter | Type | Default | Required | Description |
+| :---: | :---: | :---: | :---: | --- |
+| PlayerName | string | none | true | Return matches by Player Name.
+| Position | string | none | true | Return matches by playing position.
+| Jersey Number | string | none | true | Return matches by  jursey number.
+| NbaPlayersChampionships | int | none | true | Return NBA Teams with specific number of NBA Championships in their franchise. |
+| Playoffs | int | none | true | Return number of playoff games for this player 
+| AllStars | int | none | true | Return number of AllStar appearences for this player 
+
+
+#### Example Query
+```
+https://localhost:5000/api/players/?position=forward&team=lakers
+```
+
+#### Sample JSON Response
+```
+{
+  "PlayerId": 5,
+  "PlayerName": "Lebron James",
+  "Position": "Forward",
+  "JerseyNumber": 23,
+  "NbaPlayersChampionships": 5,
+  "PlayOffs": 59,
+  "AllStars": 6,
+  "TeamId": 14,
+  "Team": "Lakers"
+}
+
+```
 
 </details>
 </endpoint>
