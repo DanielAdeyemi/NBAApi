@@ -96,16 +96,19 @@ namespace NBA.Controllers
       return CreatedAtAction("Post", new { id = team.TeamId}, team);
     }
     
-    //  DELETE: /api/teams/delete/id
+    //  DELETE: /api/teams/id
     [HttpDelete("{id}")]
     public async Task<IActionResult> DeleteTeam(int id)
     {
       var team = await _db.Teams.FindAsync(id);
       var faTeam = await _db.Teams.FirstOrDefaultAsync(team => team.TeamName == "Free Agents");
-      List<Player> model = _db.Players.Where(player =>player.Team == team.TeamName).ToList();
+      List<Player> model = _db.Players
+        .Where(player =>player.Team == team.TeamName).ToList();
       foreach(Player player in model)
       {
+        player.Team = faTeam.TeamName;
         faTeam.Players.Add(player);
+        _db.SaveChanges();
       }
 
       if(team == null)
