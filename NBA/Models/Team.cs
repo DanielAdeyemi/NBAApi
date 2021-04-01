@@ -15,8 +15,8 @@ namespace NBA.Models
     [Required]
     [StringLength(60)]
     public string TeamName { get; set; }
+
     [Required]
-    
     public string Location { get; set; }
     [Range(0, 255, ErrorMessage = "Number of Nba Championships should be between 0 and 255.")]
     public int NbaTeamsChampionships { get; set; }

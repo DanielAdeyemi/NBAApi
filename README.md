@@ -1,4 +1,9 @@
 ## NBA API
+<p align="center">
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/csharp/csharp-original.svg" alt="csharp" width="30" />
+<img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/dot-net/dot-net-original-wordmark.svg" alt="dotnet" width="30"/>
+<img alt="MySQL" width="30px" src="https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/mysql/mysql.png" /> 
+</p>
 
 ### Specs
 #### HTTP Request
@@ -43,9 +48,56 @@ https://localhost:5000/api/teams/1
 <details>
 <summary>Teams</summary>
 
+### NBA Teams
+Access information on Official NBA Teams.
+
+#### HTTP Request
+```
+GET /api/teams
+POST /api/teams
+GET /api/teams/{id}
+PUT /api/teams/{id}
+DELETE /api/teams/{id}
+```
+
+#### Path Parameters
+| Parameter | Type | Default | Required | Description |
+| :---: | :---: | :---: | :---: | --- |
+| TeamName | string | none | true | Return matches by Team Name.
+| Location | string | none | true | Return any NBA Teams in a certain Location/City.
+| NbaTeamsChampionships | int | none | true | Return NBA Teams with specific number of NBA Championships in their franchise. |
+
+#### Example Query
+```
+https://localhost:5000/api/teams/?location=toronto&NbaTeamsChampionships=1
+```
+
+#### Sample JSON Response
+```
+{
+    "TeamId": 28,
+    "TeamName": "Raptors",
+    "Location": "Toronto",
+    "NbaTeamsChampionships: 1,
+    "Players": [
+        {
+            "PlayerId": 5,
+            "PlayerName": "Kyle Lowry",
+            "Position": "Point Guard",
+            "JerseyNumber": 7,
+            "NbaPlayersChampionships": 1,
+            "PlayOffs": 10,
+            "AllStars": 5,
+            "TeamId": 28,
+            "Team": "Raptors"
+        }
+    ]
+
+}
+```
 </details>
 <details>
-<summary>Teams</summary>
+<summary>Players</summary>
 
 </details>
 </endpoint>
