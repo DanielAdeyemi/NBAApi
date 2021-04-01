@@ -102,10 +102,10 @@ namespace NBA.Controllers
     {
       var team = await _db.Teams.FindAsync(id);
       var faTeam = await _db.Teams.FirstOrDefaultAsync(team => team.TeamName == "Free Agents");
-
-      foreach(Player player in _db.Teams.Players)
+      List<Player> model = _db.Players.Where(player =>player.Team == team.TeamName).ToList();
+      foreach(Player player in model)
       {
-        faTeam.Players.Add(Player);
+        faTeam.Players.Add(player);
       }
 
       if(team == null)
